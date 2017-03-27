@@ -1,0 +1,84 @@
+buildscript {
+    ext {
+        kotlin_version = '1.1.1'
+        dokka_version = '0.9.13'
+        gdx_version = '1.9.5'
+    }
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        maven { url "http://dl.bintray.com/kotlin/kotlin-eap-1.1" }
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+        jcenter()
+    }
+
+    // GDX tools for packing textures
+    // Kotlin - language
+    // Dokka - documentation
+    dependencies {
+        classpath "com.badlogicgames.gdx:gdx-tools:$gdx_version"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.dokka:dokka-gradle-plugin:$dokka_version"
+    }
+}
+
+allprojects {
+    apply plugin: 'idea'
+    apply plugin: 'kotlin'
+    apply plugin: 'org.jetbrains.dokka'
+
+    sourceCompatibility = 1.8
+
+    version = '0.1.0'
+    ext {
+        appName = 'the-black-cat-client'
+        gdxVersion = '1.9.5'
+        ktxVersion = '1.9.5-b1'
+    }
+
+    kotlin {
+        experimental {
+            coroutines 'enable'
+        }
+    }
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+        maven { url "https://oss.sonatype.org/content/repositories/releases/" }
+        maven { url "http://dl.bintray.com/kotlin/kotlin-eap-1.1" }
+        maven { url "https://jitpack.io" }
+    }
+
+    dependencies {
+        compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+        compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+        compile "org.jetbrains.kotlinx:kotlinx-coroutines-core:0.12"
+    }
+}
+
+project(':desktop') {
+    dependencies {
+        compile project(':core')
+        compile "com.badlogicgames.gdx:gdx-backend-lwjgl:$gdxVersion"
+        compile "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
+        compile "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-desktop"
+        compile "com.badlogicgames.gdx:gdx-tools:$gdxVersion"
+    }
+}
+
+project(':core') {
+    dependencies {
+        compile "com.badlogicgames.gdx:gdx:$gdxVersion"
+        compile "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
+
+        compile "com.github.czyzby:ktx-actors:$ktxVersion"
+        compile "com.github.czyzby:ktx-scene2d:$ktxVersion"
+
+        compile "io.socket:socket.io-client:0.8.2"
+        compile "io.reactivex:rxkotlin:0.60.0"
+        compile "com.fasterxml.jackson.module:jackson-module-kotlin:2.8.6"
+    }
+}
