@@ -15,8 +15,10 @@ The Black Cat is an online multiplayer card game. It consists of two parts: a No
 
 ### Textures
 
-In the game are used textures **designed by Freepik**.
+In the game are used textures **designed by [Freepik](http://www.freepik.com/)**.
+In the game are used button and input textures **designed by [Lamoot](https://opengameart.org/users/lamoot)**.
+Card textures are under CC License. Source [freedesignfile.com](http://freedesignfile.com).
 
 ### Fonts
 
-In the game is used **Merriweather** font created by **Sorkin Type**.
+In the game is used **Merriweather** font created by **[Sorkin Type](http://sorkintype.com/)**.
