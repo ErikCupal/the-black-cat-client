@@ -9,14 +9,12 @@ object DesktopLauncher {
   @JvmStatic
   fun main(arg: Array<String>) {
 
-//    packTextures()
-
     val config = LwjglApplicationConfiguration()
     val displayMode = LwjglApplicationConfiguration.getDesktopDisplayMode()
 
-    // Full screen mode
     config.setFromDisplayMode(displayMode)
     config.title = "The Black Cat"
+    config.fullscreen = false
 
     addIcon("icon/icon-16.png", config)
     addIcon("icon/icon-32.png", config)
