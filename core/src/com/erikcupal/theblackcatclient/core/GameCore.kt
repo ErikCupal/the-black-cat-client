@@ -24,6 +24,9 @@ import org.json.JSONObject
 import rx.subjects.PublishSubject
 import rx.subjects.SerializedSubject
 import java.net.URISyntaxException
+import com.badlogic.gdx.InputMultiplexer
+
+
 
 class GameCore : ApplicationAdapter() {
 
@@ -41,11 +44,17 @@ class GameCore : ApplicationAdapter() {
 
   lateinit var batch: SpriteBatch
 
+  val multiplexer = InputMultiplexer()
+  val keyboardShortcutsListener = KeyboardShortcutsListener()
+
   private lateinit var stage: StageBase
 
   override fun create() {
     batch = SpriteBatch()
     configureMessageHandlers()
+
+    Gdx.input.inputProcessor = multiplexer
+    multiplexer.addProcessor(keyboardShortcutsListener)
 
     stage = SplashStage(this)
   }
@@ -88,13 +97,14 @@ class GameCore : ApplicationAdapter() {
     stage.addAction(com.erikcupal.theblackcatclient.helpers.delay(
       time = 1f,
       action = doAction {
+        multiplexer.removeProcessor(stage)
         stage.dispose()
         stage = when (stageName) {
           "CONNECT_STAGE" -> ConnectStage(this)
           "GAME_STAGE"    -> GameStage(this)
           else            -> throw error("Invalid stage")
         }
-        Gdx.input.inputProcessor = stage
+        multiplexer.addProcessor(stage)
         stage.show()
       }
     ))
