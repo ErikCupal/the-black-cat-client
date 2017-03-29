@@ -77,8 +77,20 @@ project(':core') {
         compile "com.github.czyzby:ktx-actors:$ktxVersion"
         compile "com.github.czyzby:ktx-scene2d:$ktxVersion"
 
-        compile "io.socket:socket.io-client:0.8.2"
+        compile "io.socket:socket.io-client:0.8.3"
         compile "io.reactivex:rxkotlin:0.60.0"
         compile "com.fasterxml.jackson.module:jackson-module-kotlin:2.8.6"
     }
+}
+
+import com.badlogic.gdx.tools.texturepacker.TexturePacker
+
+task texturePacker << {
+    logger.info "Packing textures"
+    logger.info "Cleaning build folder"
+
+    delete 'core/assets/textures/build/'
+    TexturePacker.process("core/assets/textures/", "core/assets/textures/build/", "textures")
+    
+    logger.info "Textures packed"
 }
