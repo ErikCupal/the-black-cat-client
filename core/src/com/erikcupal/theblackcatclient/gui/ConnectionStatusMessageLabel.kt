@@ -6,13 +6,10 @@ import com.erikcupal.theblackcatclient.CENTER
 import com.erikcupal.theblackcatclient.core.GameCore
 import com.erikcupal.theblackcatclient.HEIGHT
 import com.erikcupal.theblackcatclient.helpers.*
-import com.erikcupal.theblackcatclient.types.CONNECT_FAILED
-import com.erikcupal.theblackcatclient.types.GAME_NAME_TOO_LONG
-import com.erikcupal.theblackcatclient.types.NAME_TAKEN
-import com.erikcupal.theblackcatclient.types.ROOM_NAME_TAKEN
+import com.erikcupal.theblackcatclient.types.*
 import rx.lang.kotlin.plusAssign
 
-class ConnectionErrorMessageLabel(game: GameCore) : GroupBase(game) {
+class ConnectionStatusMessageLabel(game: GameCore) : GroupBase(game) {
 
   val infoLabel = Label("", style.errorLabel)
 
@@ -32,6 +29,7 @@ class ConnectionErrorMessageLabel(game: GameCore) : GroupBase(game) {
         is NAME_TAKEN         -> changeMessage("Name taken! Choose other name.")
         is GAME_NAME_TOO_LONG -> changeMessage("Name is too long! Choose other name.")
         is CONNECT_FAILED     -> changeMessage("Failed to connect to server. Check for typos.")
+        is CONNECTING         -> changeMessage("Connecting...")
       }
     }
   }

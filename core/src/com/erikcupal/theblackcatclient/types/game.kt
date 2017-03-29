@@ -14,6 +14,11 @@ data class LastPlayerScore(
   val points: Number
 )
 
+data class AvailableRoom(
+  val name: Name,
+  val available: Boolean
+)
+
 interface ICard {
   val suit: Suit?
   val rank: Rank?

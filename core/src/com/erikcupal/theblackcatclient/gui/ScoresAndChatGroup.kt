@@ -1,17 +1,17 @@
 package com.erikcupal.theblackcatclient.gui
 
 import com.badlogic.gdx.math.Vector2
-import com.badlogic.gdx.scenes.scene2d.ui.*
-import com.badlogic.gdx.scenes.scene2d.ui.Table
+import com.badlogic.gdx.scenes.scene2d.ui.Image
+import com.badlogic.gdx.scenes.scene2d.ui.Label
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton
 import com.badlogic.gdx.utils.Align
-import com.erikcupal.theblackcatclient.*
 import com.erikcupal.theblackcatclient.core.GameCore
-import com.erikcupal.theblackcatclient.gui.GroupBase
-import com.erikcupal.theblackcatclient.helpers.*
+import com.erikcupal.theblackcatclient.helpers.hide
+import com.erikcupal.theblackcatclient.helpers.onTap
+import com.erikcupal.theblackcatclient.helpers.plusAssign
+import com.erikcupal.theblackcatclient.helpers.show
 import com.erikcupal.theblackcatclient.types.*
-import com.sun.javafx.logging.PulseLogger.addMessage
 import ktx.actors.alpha
-import java.awt.SystemColor.text
 
 class ScoresAndChatGroup(game: GameCore) : GroupBase(game) {
 
@@ -22,16 +22,10 @@ class ScoresAndChatGroup(game: GameCore) : GroupBase(game) {
   val newGameButton = createButton("New game", style.button)
   val addBotButton = createButton("Add bot", style.button)
 
-  val playersLabel = Label("Players: 1/4", style.mediumLabel)
+  val playersLabel = Label("Players: ${getPlayersCount()}/4", style.mediumLabel)
 
   val scoresBox = ScoresGroup(game)
   val chatBox = ChatGroup(game)
-
-  var playersCount = 1
-    set(value) {
-      playersLabel.setText("Players: $value/4")
-      field = value
-    }
 
   init {
 
@@ -57,18 +51,12 @@ class ScoresAndChatGroup(game: GameCore) : GroupBase(game) {
           newGameButton.show()
         }
         is PLAYER_JOINED -> {
-          playersCount++
+          val playersCount = getPlayersCount()
+          playersLabel.setText("Players: $playersCount/4")
 
           if (playersCount == 4) {
             addBotButton.hide()
           }
-        }
-        is ROOM_LEFT    -> {
-          this addAction delay(1f,
-            doAction {
-              reset()
-            }
-          )
         }
       }
     }
@@ -108,10 +96,8 @@ class ScoresAndChatGroup(game: GameCore) : GroupBase(game) {
     button.isVisible = false
     this += button
     return button
-}
-
-  private fun reset() {
-    playersCount = 1
   }
+
+  private fun getPlayersCount(): Int = state.players?.size ?: 1
 
 }

@@ -68,7 +68,7 @@ data class CARD_PLAYED(val player: Name, val card: Card, val cardFromGrill: Bool
 data class TRICK_COLLECTED(val EMPTY: Boolean = true)
 data class TRICK_FINISHED(val receiver: Name)
 
-data class AVAILABLE_ROOMS(val roomNames: MutableList<Name>)
+data class AVAILABLE_ROOMS(val rooms: List<AvailableRoom>)
 data class UPDATED_SCORES(val scores: MutableList<LastPlayerScore>)
 data class CHAT_MESSAGE(val text: String, val player: Name)
 

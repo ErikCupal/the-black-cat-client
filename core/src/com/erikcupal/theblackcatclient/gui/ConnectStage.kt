@@ -14,7 +14,7 @@ class ConnectStage(game: GameCore) : StageBase(game) {
   private val background = Image(assets.getDrawable("connect_background"))
   private val servers = ServersGroup(game)
   private val rooms = RoomsGroup(game)
-  private val errorMessage = ConnectionErrorMessageLabel(game)
+  private val errorMessage = ConnectionStatusMessageLabel(game)
 
   init {
     background.setSize(WIDTH, HEIGHT)

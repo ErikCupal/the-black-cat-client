@@ -72,22 +72,25 @@ class RoomsGroup(game: GameCore) : GroupBase(game) {
     subscription += messages.subscribe {
       when (it) {
         is AVAILABLE_ROOMS -> {
-          updateExistingRoomsButtons(it.roomNames)
-          createRoomButton.isDisabled = it.roomNames.size >= 4
+          updateExistingRoomsButtons(it.rooms)
+          createRoomButton.isDisabled = it.rooms.size >= 4
         }
       }
     }
   }
 
-  private fun updateExistingRoomsButtons(roomNames: List<Name>) {
-    val roomsButtons = roomNames.map { name ->
+  private fun updateExistingRoomsButtons(rooms: List<AvailableRoom>) {
+    val roomsButtons = rooms.map { (name, available) ->
       val croppedName = if (name.length > 10) {
         name.substring(0..9) + "..."
       } else {
         name
       }
 
-      TextButton(croppedName, style.button)
+      val button = TextButton(croppedName, style.button)
+      button.isDisabled = !available
+
+      button
     }
 
     when (roomsButtons.size) {
