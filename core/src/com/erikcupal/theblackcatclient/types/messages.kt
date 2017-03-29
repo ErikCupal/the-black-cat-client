@@ -38,6 +38,7 @@ data class CONNECTING(val EMPTY: Boolean = true)
 data class DISCONNECTED(val EMPTY: Boolean = true)
 
 data class CONNECTION_CONFIRMATION(val EMPTY: Boolean = true)
+data class SERVER_FULL(val EMPTY: Boolean = true)
 data class CONNECT_FAILED(val EMPTY: Boolean = true)
 
 data class REGISTERED(val name: Name)

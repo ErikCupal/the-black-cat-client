@@ -30,6 +30,7 @@ class ConnectionStatusMessageLabel(game: GameCore) : GroupBase(game) {
         is GAME_NAME_TOO_LONG -> changeMessage("Name is too long! Choose other name.")
         is CONNECT_FAILED     -> changeMessage("Failed to connect to server. Check for typos.")
         is CONNECTING         -> changeMessage("Connecting...")
+        is SERVER_FULL        -> changeMessage("Server is full. Try later.")
       }
     }
   }
