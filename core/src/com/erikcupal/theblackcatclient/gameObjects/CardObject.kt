@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.actions.ScaleToAction
 import com.badlogic.gdx.scenes.scene2d.ui.Image
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable
 import com.erikcupal.theblackcatclient.*
+import com.erikcupal.theblackcatclient.core.GameCore
 import com.erikcupal.theblackcatclient.gui.GroupBase
 import com.erikcupal.theblackcatclient.helpers.*
 import com.erikcupal.theblackcatclient.screens.Objects.CardsContainer

@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton
 import com.badlogic.gdx.scenes.scene2d.ui.TextField
 import com.badlogic.gdx.utils.Align
 import com.erikcupal.theblackcatclient.*
+import com.erikcupal.theblackcatclient.core.GameCore
 import com.erikcupal.theblackcatclient.gui.GroupBase
 import com.erikcupal.theblackcatclient.helpers.*
 import com.erikcupal.theblackcatclient.types.*
@@ -17,7 +18,7 @@ class ServersGroup(game: GameCore) : GroupBase(game) {
   val nameLabel = Label("Nick", style.smallLabel)
   val nickInput = TextField("", style.input)
   val serverLabel = Label("Server", style.smallLabel)
-  val serverInput = TextField("http://localhost:3000", style.input)
+  val serverInput = TextField("", style.input)
   val connectButton = TextButton("Connect", style.button)
   val quitButton = TextButton("Quit game", style.button)
 

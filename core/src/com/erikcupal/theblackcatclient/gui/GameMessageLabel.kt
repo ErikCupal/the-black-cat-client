@@ -6,6 +6,7 @@ import com.badlogic.gdx.utils.Align
 import com.erikcupal.theblackcatclient.*
 import com.erikcupal.theblackcatclient.gui.GroupBase
 import com.erikcupal.theblackcatclient.helpers.*
+import com.erikcupal.theblackcatclient.core.GameCore
 import com.erikcupal.theblackcatclient.types.DEAL_DECK
 import com.erikcupal.theblackcatclient.types.GAME_STARTED
 import com.erikcupal.theblackcatclient.types.NEXT_ROUND

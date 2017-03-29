@@ -1,7 +1,7 @@
 package com.erikcupal.theblackcatclient.gui
 
+import com.erikcupal.theblackcatclient.core.GameCore
 import com.badlogic.gdx.scenes.scene2d.Group
-import com.erikcupal.theblackcatclient.GameCore
 import rx.subscriptions.CompositeSubscription
 
 open class GroupBase(game: GameCore): Group() {

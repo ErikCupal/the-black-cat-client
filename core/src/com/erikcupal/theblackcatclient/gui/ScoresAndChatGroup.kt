@@ -5,6 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.*
 import com.badlogic.gdx.scenes.scene2d.ui.Table
 import com.badlogic.gdx.utils.Align
 import com.erikcupal.theblackcatclient.*
+import com.erikcupal.theblackcatclient.core.GameCore
 import com.erikcupal.theblackcatclient.gui.GroupBase
 import com.erikcupal.theblackcatclient.helpers.*
 import com.erikcupal.theblackcatclient.types.*

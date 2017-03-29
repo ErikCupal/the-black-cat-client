@@ -3,7 +3,7 @@ package com.erikcupal.theblackcatclient.desktop
 import com.badlogic.gdx.Files
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration
-import com.erikcupal.theblackcatclient.GameCore
+import com.erikcupal.theblackcatclient.core.GameCore
 
 object DesktopLauncher {
   @JvmStatic

@@ -2,6 +2,7 @@ package com.erikcupal.theblackcatclient.gui
 
 import com.badlogic.gdx.scenes.scene2d.ui.*
 import com.erikcupal.theblackcatclient.*
+import com.erikcupal.theblackcatclient.core.GameCore
 import com.erikcupal.theblackcatclient.gui.GroupBase
 import com.erikcupal.theblackcatclient.helpers.*
 import com.erikcupal.theblackcatclient.types.*

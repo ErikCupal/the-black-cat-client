@@ -1,9 +1,10 @@
-package com.erikcupal.theblackcatclient
+package com.erikcupal.theblackcatclient.core
 
 import com.badlogic.gdx.*
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.scenes.scene2d.actions.AddAction
 import com.erikcupal.theblackcatclient.assets.Assets
+import com.erikcupal.theblackcatclient.core.createSocketIoOptions
 import com.erikcupal.theblackcatclient.gui.ConnectStage
 import com.erikcupal.theblackcatclient.gui.GameStage
 import com.erikcupal.theblackcatclient.gui.SplashStage
@@ -36,6 +37,8 @@ class GameCore : ApplicationAdapter() {
   val send = Send { payload -> sendMessageToServer(payload) }
 
   private var socket: Socket? = null
+  private val socketOptions = createSocketIoOptions()
+
   lateinit var batch: SpriteBatch
 
   private lateinit var stage: StageBase
@@ -72,36 +75,36 @@ class GameCore : ApplicationAdapter() {
       updateState(message)
 
       when (message) {
-        is CONNECT                    -> initializeSocket(message.server)
-        is GAME_SET_STAGE             -> changeStage(message.stageName)
-        is GAME_LEAVE_SERVER          -> socket?.disconnect()
+        is CONNECT           -> initializeSocket(message.server)
+        is GAME_SET_STAGE    -> changeStage(message.stageName)
+        is GAME_LEAVE_SERVER -> socket?.disconnect()
       }
     }
   }
 
   private fun changeStage(stageName: Name) {
-      stage.hide()
+    stage.hide()
 
-      stage.addAction(com.erikcupal.theblackcatclient.helpers.delay(
-        time = 1f,
-        action = doAction {
-          stage.dispose()
-          stage = when (stageName) {
-            "CONNECT_STAGE" -> ConnectStage(this)
-            "GAME_STAGE"    -> GameStage(this)
-            else            -> throw error("Invalid stage")
-          }
-          Gdx.input.inputProcessor = stage
-          stage.show()
+    stage.addAction(com.erikcupal.theblackcatclient.helpers.delay(
+      time = 1f,
+      action = doAction {
+        stage.dispose()
+        stage = when (stageName) {
+          "CONNECT_STAGE" -> ConnectStage(this)
+          "GAME_STAGE"    -> GameStage(this)
+          else            -> throw error("Invalid stage")
         }
-      ))
+        Gdx.input.inputProcessor = stage
+        stage.show()
+      }
+    ))
   }
 
   fun isConnected() = socket != null
 
   private fun initializeSocket(server: String) {
     try {
-      socket = IO.socket(server)
+      socket = IO.socket(server, socketOptions)
       socket?.connect()
 
       socket?.on(EVENT_CONNECT) {
@@ -120,22 +123,25 @@ class GameCore : ApplicationAdapter() {
       socket?.on("MESSAGE") { data ->
         onSocketMessage(data)
       }
+
+      socket?.on(EVENT_CONNECT_ERROR) {
+        log("🕊️ socket CONNECT ERROR", server)
+        dispatch..CONNECT_FAILED()
+        socket = null
+      }
     } catch (e: URISyntaxException) {
-      log("🕊️🕊️🕊️🕊 SOCKET FAILED TO CONNECT 🕊️🕊️🕊️")
+      log("🕊️🕊️🕊️ SOCKET FAILED TO CONNECT - INVALID SERVER ADDRESS 🕊️🕊️🕊️")
       dispatch..CONNECT_FAILED()
     }
   }
 
   private fun sendMessageToServer(payload: Any) {
-    if(socket == null || !socket!!.connected()) {
-      log("🕊️🕊️🕊️🕊 SOCKET FAILED TO CONNECT 🕊️🕊️🕊️")
-      dispatch..CONNECT_FAILED()
-    }
-
-    launch(CommonPool) {
-      val jsonMessage = """{"type": "${payload::class.simpleName}",""" + jsonMapper.writeValueAsString(payload).removeRange(0..0)
-      socket?.emit("MESSAGE", jsonMessage)
-      log("🦄 SOCKET_MESSAGE_SEND", payload.toString())
+    if (socket != null && socket!!.connected()) {
+      launch(CommonPool) {
+        val jsonMessage = """{"type": "${payload::class.simpleName}",""" + jsonMapper.writeValueAsString(payload).removeRange(0..0)
+        socket?.emit("MESSAGE", jsonMessage)
+        log("🦄 SOCKET_MESSAGE_SEND", payload.toString())
+      }
     }
   }
 

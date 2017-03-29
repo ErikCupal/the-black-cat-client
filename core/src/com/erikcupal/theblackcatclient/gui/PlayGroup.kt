@@ -3,6 +3,7 @@ package com.erikcupal.theblackcatclient.gui
 import com.badlogic.gdx.scenes.scene2d.ui.Image
 import com.badlogic.gdx.utils.Align
 import com.erikcupal.theblackcatclient.*
+import com.erikcupal.theblackcatclient.core.GameCore
 import com.erikcupal.theblackcatclient.gui.GroupBase
 import com.erikcupal.theblackcatclient.screens.Objects.CardsContainer
 import com.erikcupal.theblackcatclient.gui.PlayerNameLabel

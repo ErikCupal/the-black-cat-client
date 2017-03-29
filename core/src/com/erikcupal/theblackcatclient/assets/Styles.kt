@@ -31,8 +31,8 @@ class Styles {
     input.font = assets.get<BitmapFont>("inputFont.ttf")
     input.fontColor = COLORS.LIGHT_GREY
     input.background = assets.getDrawable("textfield")
-    input.background.leftWidth = 15f
-    input.background.rightWidth = 15f
+    input.background.leftWidth = 20f
+    input.background.rightWidth = 20f
     input.focusedBackground = assets.getDrawable("textfield_focused")
     input.focusedBackground.leftWidth = 20f
     input.focusedBackground.rightWidth = 20f

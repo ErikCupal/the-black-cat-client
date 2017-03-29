@@ -3,6 +3,7 @@ package com.erikcupal.theblackcatclient.gui
 import com.badlogic.gdx.scenes.scene2d.Stage
 import com.badlogic.gdx.utils.viewport.FitViewport
 import com.erikcupal.theblackcatclient.*
+import com.erikcupal.theblackcatclient.core.GameCore
 import com.erikcupal.theblackcatclient.helpers.fadeIn
 import com.erikcupal.theblackcatclient.helpers.fadeOut
 import rx.subscriptions.CompositeSubscription

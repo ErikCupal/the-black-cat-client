@@ -3,7 +3,7 @@ package com.erikcupal.theblackcatclient.gui
 import com.badlogic.gdx.scenes.scene2d.ui.Label
 import com.badlogic.gdx.utils.Align
 import com.erikcupal.theblackcatclient.CENTER
-import com.erikcupal.theblackcatclient.GameCore
+import com.erikcupal.theblackcatclient.core.GameCore
 import com.erikcupal.theblackcatclient.HEIGHT
 import com.erikcupal.theblackcatclient.helpers.*
 import com.erikcupal.theblackcatclient.types.CONNECT_FAILED
