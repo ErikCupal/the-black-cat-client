@@ -30,7 +30,7 @@ allprojects {
 
     sourceCompatibility = 1.6
 
-    version = '0.1.0'
+    version = '0.1.1'
     ext {
         appName = 'the-black-cat-client'
         gdxVersion = '1.9.5'
