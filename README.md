@@ -4,6 +4,12 @@
 
 The Black Cat is an online multiplayer card game. It consists of two parts: a Node.js server and client app written in Kotlin and based on LibGDX game framework.
 
+## Download
+
+### Crossplatform (JAR)
+
+* [v0.1.1](https://drive.google.com/file/d/0By2pvUuh-O-MMExKRHFXanFNUkk/view?usp=sharing)
+
 ## Libraries used
 
 * [LibGDX](https://libgdx.badlogicgames.com/)
