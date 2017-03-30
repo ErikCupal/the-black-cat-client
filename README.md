@@ -10,6 +10,13 @@ The Black Cat is an online multiplayer card game. It consists of two parts: a No
 
 * [v0.1.1](https://drive.google.com/file/d/0By2pvUuh-O-MMExKRHFXanFNUkk/view?usp=sharing)
 
+## Official active servers (🔥 still under development 🔥)
+
+* [https://sr1.theblackcat.club](https://sr1.theblackcat.club)
+* [https://sr2.theblackcat.club](https://sr2.theblackcat.club)
+* [https://sr3.theblackcat.club](https://sr3.theblackcat.club)
+* [https://sr4.theblackcat.club](https://sr4.theblackcat.club)
+
 ## Libraries used
 
 * [LibGDX](https://libgdx.badlogicgames.com/)
