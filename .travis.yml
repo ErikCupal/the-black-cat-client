@@ -1,0 +1,6 @@
+language: java
+script:
+  - gradlew texturePacker
+  - gradlew desktop:dist
+git:
+  depth: 3
