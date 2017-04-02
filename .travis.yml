@@ -1,7 +1,7 @@
 language: java
 install: true
 script:
-  - gradlew texturePacker
-  - gradlew desktop:dist
+  - ./gradlew texturePacker
+  - ./gradlew desktop:dist
 git:
   depth: 3
