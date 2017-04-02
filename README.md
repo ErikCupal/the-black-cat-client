@@ -1,14 +1,14 @@
-# The Black Cat - Client
+# The Black Cat - Client 🎮🃏
 
-## About
+[![Travis branch](https://img.shields.io/travis/ErikCupal/the-black-cat-client/master.svg?style=flat-square)](https://travis-ci.org/ErikCupal/the-black-cat-client)
 
-The Black Cat is an online multiplayer card game. It consists of two parts: a Node.js [server](https://github.com/ErikCupal/the-black-cat-server) and [client](https://github.com/ErikCupal/the-black-cat-client) app written in Kotlin and based on LibGDX game framework.
+The Black Cat is an online multiplayer card game. It consists of two parts: Node.js [server](https://github.com/ErikCupal/the-black-cat-server) and [client](https://github.com/ErikCupal/the-black-cat-client) app written in Kotlin and based on LibGDX game framework.
+
+### [Server repo](https://github.com/ErikCupal/the-black-cat-server)
 
 ## Download
 
-### Crossplatform (JAR)
-
-* [v0.1.1](https://drive.google.com/file/d/0By2pvUuh-O-MMExKRHFXanFNUkk/view?usp=sharing)
+[Latest release](https://github.com/ErikCupal/the-black-cat-client/releases) - crossplatform JAR
 
 ## Official active servers (🔥 still under development 🔥)
 
@@ -16,13 +16,6 @@ The Black Cat is an online multiplayer card game. It consists of two parts: a No
 * [https://sr2.theblackcat.club](https://sr2.theblackcat.club)
 * [https://sr3.theblackcat.club](https://sr3.theblackcat.club)
 * [https://sr4.theblackcat.club](https://sr4.theblackcat.club)
-
-## Libraries used
-
-* [LibGDX](https://libgdx.badlogicgames.com/)
-* [Socket.IO](https://github.com/socketio/socket.io)
-* [jackson-module-kotlin](https://github.com/FasterXML/jackson-module-kotlin)
-* [RxKotlin](https://github.com/ReactiveX/RxKotlin)
 
 ## Credits
 
@@ -35,3 +28,14 @@ Card textures are under CC License. Source [freedesignfile.com](http://freedesig
 ### Fonts
 
 In the game is used **Merriweather** font created by **[Sorkin Type](http://sorkintype.com/)**.
+
+## Libraries used
+
+* [LibGDX](https://libgdx.badlogicgames.com/)
+* [Socket.IO](https://github.com/socketio/socket.io)
+* [jackson-module-kotlin](https://github.com/FasterXML/jackson-module-kotlin)
+* [RxKotlin](https://github.com/ReactiveX/RxKotlin)
+
+## License
+
+MIT
