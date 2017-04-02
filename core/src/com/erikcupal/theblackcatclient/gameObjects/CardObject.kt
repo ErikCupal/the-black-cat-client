@@ -9,10 +9,15 @@ import com.erikcupal.theblackcatclient.*
 import com.erikcupal.theblackcatclient.core.GameCore
 import com.erikcupal.theblackcatclient.gui.GroupBase
 import com.erikcupal.theblackcatclient.helpers.*
-import com.erikcupal.theblackcatclient.screens.Objects.CardsContainer
 import com.erikcupal.theblackcatclient.types.*
 import ktx.actors.alpha
 
+/**
+ * Card object
+ *
+ * It's position, rotation, scale, magnification and image
+ * can be changed in time using [transform] method.
+ */
 class CardObject(
   game: GameCore,
   var owner: PlayerSide? = null,
@@ -49,13 +54,15 @@ class CardObject(
     set(value) {
       if (!floating) {
         when (value) {
-          true  -> scaleAction = scaleToAction(
-            scale = baseScale * magnification,
+          true  -> scaleAction = scaleTo(
+            x = baseScale * magnification,
+            y = baseScale * magnification,
             duration = magnifyDuration,
             interpolation = fade
           )
-          false -> scaleAction = scaleToAction(
-            scale = baseScale,
+          false -> scaleAction = scaleTo(
+            x = baseScale,
+            y = baseScale,
             duration = magnifyDuration,
             interpolation = fade
           )
@@ -145,13 +152,13 @@ class CardObject(
     this addAction delay(
       time = delay,
       action = parallel(
-        moveToAction(
+        moveTo(
           x = transformation.position.x,
           y = transformation.position.y,
           duration = duration,
           interpolation = fade
         ),
-        rotateToAction(
+        rotateTo(
           rotation = transformation.rotation,
           duration = duration,
           interpolation = fade
@@ -163,9 +170,9 @@ class CardObject(
               floating = true
             },
             if (!transformation.noScaling) {
-              scaleToAction(
-                scaleX = 0f,
-                scaleY = transformation.scale.y,
+              scaleTo(
+                x = 0f,
+                y = transformation.scale.y,
                 duration = duration / 2,
                 interpolation = Interpolation.pow2In)
             } else {
@@ -185,9 +192,9 @@ class CardObject(
               updateCardImage()
             },
             if (!transformation.noScaling) {
-              scaleToAction(
-                scaleX = transformation.scale.x,
-                scaleY = transformation.scale.y,
+              scaleTo(
+                x = transformation.scale.x,
+                y = transformation.scale.y,
                 duration = duration / 2,
                 interpolation = Interpolation.pow2Out)
             } else {
@@ -206,9 +213,9 @@ class CardObject(
             },
             parallel(
               if (!transformation.noScaling) {
-                scaleToAction(
-                  scaleX = transformation.scale.x,
-                  scaleY = transformation.scale.y,
+                scaleTo(
+                  x = transformation.scale.x,
+                  y = transformation.scale.y,
                   duration = duration / 2,
                   interpolation = fade)
               } else {

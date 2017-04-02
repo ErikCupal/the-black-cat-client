@@ -1,10 +1,10 @@
 package com.erikcupal.theblackcatclient.core
 
-import com.badlogic.gdx.*
+import com.badlogic.gdx.ApplicationAdapter
+import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.InputMultiplexer
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
-import com.badlogic.gdx.scenes.scene2d.actions.AddAction
 import com.erikcupal.theblackcatclient.assets.Assets
-import com.erikcupal.theblackcatclient.core.createSocketIoOptions
 import com.erikcupal.theblackcatclient.gui.ConnectStage
 import com.erikcupal.theblackcatclient.gui.GameStage
 import com.erikcupal.theblackcatclient.gui.SplashStage
@@ -19,24 +19,37 @@ import com.fasterxml.jackson.module.kotlin.readValue
 import io.socket.client.IO
 import io.socket.client.Socket
 import io.socket.client.Socket.*
-import kotlinx.coroutines.experimental.*
+import kotlinx.coroutines.experimental.CommonPool
+import kotlinx.coroutines.experimental.launch
 import org.json.JSONObject
 import rx.subjects.PublishSubject
 import rx.subjects.SerializedSubject
-import java.net.URISyntaxException
-import com.badlogic.gdx.InputMultiplexer
 
-
-
+/**
+ * GameCore
+ *
+ * Main game class.
+ * Handles rendering, screen changing
+ * dispatching game and state messages
+ * and send/receiving client/server messages.
+ *
+ * @property jsonMapper serializes and deserializes JSON strings from/to Kotlin data classes
+ * @property messages RxKotlin Subject - it is used as messaging hub
+ * @property dispatch dispatches game and state messages
+ * @property send sends/receives client/server messages
+ * @property socket Socket.IO Socket object - communicates with server over WebSockets
+ * @property socketOptions Socket.IO options object - it is necessary in order to support SSL/TLS
+ * @property batch SpriteBatch used for rendering graphics
+ * @property stage Scene2D stage - used for drawing Actors on [batch]
+ */
 class GameCore : ApplicationAdapter() {
 
-  // Json object mapper
   private val jsonMapper = jacksonObjectMapper()
   val assets = Assets()
   val state = State()
   private val updateState = stateUpdaterFactory(state)
   val messages = SerializedSubject(PublishSubject.create<Any>())
-  val dispatch = Dispatch(messages::onNext)
+  val dispatch = Dispatch { message -> messages.onNext(message) }
   val send = Send { payload -> sendMessageToServer(payload) }
 
   private var socket: Socket? = null
@@ -139,7 +152,7 @@ class GameCore : ApplicationAdapter() {
         dispatch..CONNECT_FAILED()
         socket = null
       }
-    } catch (e: URISyntaxException) {
+    } catch (e: Exception) {
       log("🕊️🕊️🕊️ SOCKET FAILED TO CONNECT - INVALID SERVER ADDRESS 🕊️🕊️🕊️")
       dispatch..CONNECT_FAILED()
     }
@@ -203,10 +216,18 @@ class GameCore : ApplicationAdapter() {
     }
   }
 
+  /**
+   * Used for enabling syntax
+   * dispatch..MESSAGE() instead of dispatch(MESSAGE())
+   */
   class Dispatch(private val callback: (Any) -> Unit) {
     operator fun rangeTo(message: Any) = callback(message)
   }
 
+  /**
+   * Used for enabling syntax
+   * send..MESSAGE() instead of send(MESSAGE())
+   */
   class Send(private val callback: (Any) -> Unit) {
     operator fun rangeTo(payload: Any) = callback(payload)
   }

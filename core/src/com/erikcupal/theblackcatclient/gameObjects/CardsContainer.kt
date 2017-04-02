@@ -1,12 +1,16 @@
-package com.erikcupal.theblackcatclient.screens.Objects
+package com.erikcupal.theblackcatclient.gameObjects
 
 import com.erikcupal.theblackcatclient.core.GameCore
-import com.erikcupal.theblackcatclient.gameObjects.*
 import com.erikcupal.theblackcatclient.gui.GroupBase
 import com.erikcupal.theblackcatclient.helpers.*
 import com.erikcupal.theblackcatclient.types.*
 import rx.lang.kotlin.plusAssign
 
+/**
+ * Contains all [[CardObject]] objects and [[ICardsObject]] objects like hand, grill, etc.
+ *
+ * Transforms cards from one [[ICardsObject]] to another.
+ */
 class CardsContainer(game: GameCore) : GroupBase(game) {
 
   val cards = List(32) { CardObject(game) }
@@ -166,7 +170,7 @@ class CardsContainer(game: GameCore) : GroupBase(game) {
 
   val isSameCard: (ICard) -> (ICard) -> Boolean = { a -> { b -> a.suit == b.suit && a.rank == b.rank } }
   val isOfSuit: (Suit?) -> (ICard) -> Boolean = { suit -> { card -> card.suit == suit } }
-  val isBlackCat: (ICard) -> Boolean = isSameCard(theBlackCat)
+  val isBlackCat: (ICard) -> Boolean = isSameCard(theBlackCatCard)
 
   fun cardIsPlayable(card: ICard) = fun(): Boolean {
     val firstTableCard = table.cards.getOrNull(0)
@@ -182,7 +186,7 @@ class CardsContainer(game: GameCore) : GroupBase(game) {
 
   private fun sortHand() {
     bottomHand.cards.sortWith(compareBy({ it.suit }, { it.rank }))
-    bottomHand.cards.copy().forEach { card ->
+    bottomHand.cards.clone().forEach { card ->
       transformCard(
         card = card,
         from = bottomHand,
@@ -265,7 +269,7 @@ class CardsContainer(game: GameCore) : GroupBase(game) {
   }
 
   fun dealCards(playerHand: List<Card>) {
-    val initialDelay = 1f
+    val initialDelay = 1.5f
     val dealDuration = 0.15f
     val travelDuration = dealDuration * 4
 
@@ -298,7 +302,7 @@ class CardsContainer(game: GameCore) : GroupBase(game) {
     repeat(deck.cards.size) { index ->
       this addAction delay(
         time = cardDelay(index),
-        action = optimizedDoAction {
+        action = doAction {
           transformations[index]()
         }
       )
@@ -306,7 +310,7 @@ class CardsContainer(game: GameCore) : GroupBase(game) {
 
     this addAction delay(
       time = cardDelay(deck.cards.size),
-      action = optimizedDoAction {
+      action = doAction {
         send..DECK_DEALT()
       }
     )
@@ -350,7 +354,7 @@ class CardsContainer(game: GameCore) : GroupBase(game) {
       PlayerSide.TOP    -> topHandOver.cards
       PlayerSide.LEFT   -> leftHandOver.cards
       PlayerSide.RIGHT  -> rightHandOver.cards
-    }).copy()
+    }).clone()
 
     when (player) {
       PlayerSide.BOTTOM -> {
@@ -458,7 +462,7 @@ class CardsContainer(game: GameCore) : GroupBase(game) {
   }
 
   fun collectTrick() {
-    val cards = table.cards.copy()
+    val cards = table.cards.clone()
 
     cards.forEach { card ->
       transformCard(
@@ -471,7 +475,7 @@ class CardsContainer(game: GameCore) : GroupBase(game) {
   }
 
   fun trickToPile(player: PlayerSide) {
-    val cards = trick.cards.copy()
+    val cards = trick.cards.clone()
 
     cards.forEach { card ->
       transformCard(

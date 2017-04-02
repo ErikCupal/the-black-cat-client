@@ -6,6 +6,9 @@ import com.badlogic.gdx.utils.Align
 import com.erikcupal.theblackcatclient.WIDTH
 import com.erikcupal.theblackcatclient.helpers.plusAssign
 
+/**
+ * Label used for player names around the table picture
+ */
 class PlayerNameLabel(
   text: String = "",
   style: Label.LabelStyle? = null

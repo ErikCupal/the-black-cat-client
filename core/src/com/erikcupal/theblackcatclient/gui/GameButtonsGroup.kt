@@ -12,6 +12,9 @@ import com.erikcupal.theblackcatclient.types.*
 import ktx.actors.alpha
 import rx.lang.kotlin.plusAssign
 
+/**
+ * Gameplay buttons used in [[PlayGroup]]
+ */
 class GameButtonsGroup(game: GameCore) : GroupBase(game) {
 
   val readyButton = createButton("I AM READY", style.mediumNoBackgroundButton)

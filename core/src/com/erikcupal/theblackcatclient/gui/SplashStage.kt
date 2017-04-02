@@ -10,6 +10,12 @@ import com.erikcupal.theblackcatclient.helpers.*
 import com.erikcupal.theblackcatclient.types.GAME_SET_STAGE
 import ktx.actors.alpha
 
+/**
+ * Stage with splash picture
+ *
+ * It is used to load assets
+ * in background while visible.
+ */
 class SplashStage(game: GameCore) : StageBase(game) {
 
   private val backgroundTexture = Texture("textures/splash_screen.png")

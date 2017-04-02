@@ -8,12 +8,18 @@ val GAME_HEIGHT = 1080f
 
 val WIDTH = GAME_WIDTH
 val HEIGHT = GAME_HEIGHT
-val CARD_WIDTH = 499f
-val CARD_HEIGHT = 696f
 
+/**
+ * Screen center
+ */
 val CENTER = Vector2(WIDTH / 2, HEIGHT / 2)
 val GAME_SIZE = Vector2(WIDTH, HEIGHT)
+/**
+ * Table's offset from the bottom of screen
+ */
 val BOTTOM_TABLE_OFFSET = Vector2(0f, 30f)
+val CARD_WIDTH = 499f
+val CARD_HEIGHT = 696f
 val CARD_INITIAL_SCALE = 0.18f
 
 object COLORS {

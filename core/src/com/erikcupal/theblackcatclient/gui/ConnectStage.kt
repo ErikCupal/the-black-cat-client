@@ -9,6 +9,12 @@ import com.erikcupal.theblackcatclient.types.*
 import ktx.actors.alpha
 import rx.lang.kotlin.plusAssign
 
+/**
+ * Stage with [[ServersGroup]] and [[RoomsGroup]]
+ *
+ * It allows connecting/disconnecting to/from servers
+ * and joining/leaving rooms.
+ */
 class ConnectStage(game: GameCore) : StageBase(game) {
 
   private val background = Image(assets.getDrawable("connect_background"))

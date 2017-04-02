@@ -17,7 +17,7 @@ import com.erikcupal.theblackcatclient.COLORS
 import com.erikcupal.theblackcatclient.helpers.toDrawable
 
 /**
- * Assets
+ * Loads textures in core/assets/ and generates fonts.
  */
 class Assets {
 
@@ -170,11 +170,10 @@ class Assets {
     manager.dispose()
   }
 
+  /**
+   * get asset
+   */
   fun <T> get(fileName: String): T = manager.get<T>(fileName)
-
-  fun getRegion(fileName: String): AtlasRegion {
-    return manager.get<TextureAtlas>(atlasPath, TextureAtlas::class.java).findRegion(fileName)
-  }
 
   fun getDrawable(fileName: String): Drawable {
     return toDrawable(manager.get<TextureAtlas>(atlasPath, TextureAtlas::class.java).findRegion(fileName))

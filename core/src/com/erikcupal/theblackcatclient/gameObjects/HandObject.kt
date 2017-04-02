@@ -2,18 +2,20 @@ package com.erikcupal.theblackcatclient.gameObjects
 
 import com.badlogic.gdx.math.Vector2
 import com.erikcupal.theblackcatclient.*
-import com.erikcupal.theblackcatclient.gameObjects.CardObject
-import com.erikcupal.theblackcatclient.helpers.playerRotation
+import com.erikcupal.theblackcatclient.helpers.getPlayerRotation
 import com.erikcupal.theblackcatclient.types.CardTransformation
 import com.erikcupal.theblackcatclient.types.CardValueChange
 import com.erikcupal.theblackcatclient.types.PlayerSide
 
+/**
+ * Hand object that implements [[ICardsObject]]
+ */
 open class HandObject(val side: PlayerSide) : ICardsObject {
 
   override var cards = mutableListOf<CardObject>()
 
   open val scale = CARD_INITIAL_SCALE
-  val rotation = -3f + playerRotation(side)
+  val rotation = -3f + getPlayerRotation(side)
   open val relativeCardOffset = 0.5f
   open val magnification = when (side) {
     PlayerSide.BOTTOM -> 1.5f

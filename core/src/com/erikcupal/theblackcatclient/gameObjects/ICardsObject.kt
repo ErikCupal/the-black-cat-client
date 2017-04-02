@@ -2,6 +2,9 @@ package com.erikcupal.theblackcatclient.gameObjects
 
 import com.erikcupal.theblackcatclient.types.CardValueChange
 
+/**
+ * Card object interface with [[updateCard]] method
+ */
 interface ICardsObject {
 
   var cards: MutableList<CardObject>

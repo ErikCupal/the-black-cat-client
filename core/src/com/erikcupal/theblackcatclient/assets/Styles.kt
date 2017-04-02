@@ -7,7 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldStyle
 import com.erikcupal.theblackcatclient.COLORS
 
 /**
- * Styles
+ * Scene2D styles
  */
 class Styles {
   internal val input = TextFieldStyle()

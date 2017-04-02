@@ -4,10 +4,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image
 import com.badlogic.gdx.utils.Align
 import com.erikcupal.theblackcatclient.*
 import com.erikcupal.theblackcatclient.core.GameCore
-import com.erikcupal.theblackcatclient.gui.GroupBase
-import com.erikcupal.theblackcatclient.screens.Objects.CardsContainer
-import com.erikcupal.theblackcatclient.gui.PlayerNameLabel
-import com.erikcupal.theblackcatclient.gui.GameButtonsGroup
+import com.erikcupal.theblackcatclient.gameObjects.CardsContainer
 import com.erikcupal.theblackcatclient.helpers.getPlayerSide
 import com.erikcupal.theblackcatclient.helpers.plusAssign
 import com.erikcupal.theblackcatclient.types.PLAYER_JOINED
@@ -15,6 +12,9 @@ import com.erikcupal.theblackcatclient.types.PLAYER_REPLACED_WITH_BOT
 import com.erikcupal.theblackcatclient.types.PlayerSide
 import rx.lang.kotlin.plusAssign
 
+/**
+ * Group with table picture, cards and gameplay buttons
+ */
 class PlayGroup(game: GameCore) : GroupBase(game) {
   private val tableImage = Image(assets.getDrawable("table"))
   private val gameButtons = GameButtonsGroup(game)

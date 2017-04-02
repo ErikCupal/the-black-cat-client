@@ -2,12 +2,9 @@ package com.erikcupal.theblackcatclient.types
 
 import com.erikcupal.theblackcatclient.gameObjects.CardObject
 
-/**
- * Client socket Messages
- */
+// Client socket messages
 
 data class CONNECT(val server: Address)
-
 data class DISCONNECT(val EMPTY: Boolean = true)
 
 data class REGISTER(val name: Name)
@@ -28,12 +25,9 @@ data class I_WANT_NEW_GAME(val EMPTY: Boolean = true)
 data class GET_ROOMS(val EMPTY: Boolean = true)
 data class SEND_CHAT_MESSAGE(val text: String)
 
-/**
- * Server socket messages
- */
+// Server socket messages
 
 data class CONNECTED(val EMPTY: Boolean = true)
-
 data class CONNECTING(val EMPTY: Boolean = true)
 data class DISCONNECTED(val EMPTY: Boolean = true)
 
@@ -73,12 +67,9 @@ data class AVAILABLE_ROOMS(val rooms: List<AvailableRoom>)
 data class UPDATED_SCORES(val scores: MutableList<LastPlayerScore>)
 data class CHAT_MESSAGE(val text: String, val player: Name)
 
-/**
- * Game
- */
+// Game messages
 
 data class GAME_LEAVE_SERVER(val EMPTY: Boolean = true)
-
 data class GAME_SET_STAGE(val stageName: Name)
 data class GAME_CARD_SELECTION_CHANGED(val EMPTY: Boolean = true)
 data class GAME_HANDOVER_SELECTION_CHANGED(val readyToSend: Boolean)
@@ -86,12 +77,9 @@ data class GAME_GRILL_SELECTION_CHANGED(val readyToSend: Boolean)
 data class GAME_PLAY_CARD(val card: CardObject)
 data class GAME_NAME_TOO_LONG(val EMPTY: Boolean = true)
 
-/**
- * Buttons
- */
+// Button pressed messages
 
 data class READY_BUTTON(val EMPTY: Boolean = true)
-
 data class TAKE_ALL_BUTTON(val EMPTY: Boolean = true)
 data class TAKE_NOTHING_BUTTON(val EMPTY: Boolean = true)
 data class PASS_CARDS_BUTTON(val EMPTY: Boolean = true)

@@ -6,6 +6,9 @@ import com.badlogic.gdx.utils.Align
 import com.erikcupal.theblackcatclient.core.GameCore
 import com.erikcupal.theblackcatclient.helpers.plusAssign
 
+/**
+ * Table footer for [[ScoresGroup]]
+ */
 class ScoresFooterGroup(game: GameCore) : GroupBase(game) {
 
   val footer = Table()

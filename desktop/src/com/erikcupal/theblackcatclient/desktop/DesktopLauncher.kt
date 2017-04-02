@@ -5,6 +5,11 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplication
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration
 import com.erikcupal.theblackcatclient.core.GameCore
 
+/**
+ * Desktop game launcher
+ *
+ * Starts in windowed mode by default.
+ */
 object DesktopLauncher {
   @JvmStatic
   fun main(arg: Array<String>) {

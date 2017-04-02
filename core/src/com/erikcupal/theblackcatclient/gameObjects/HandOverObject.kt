@@ -3,14 +3,16 @@ package com.erikcupal.theblackcatclient.gameObjects
 import com.badlogic.gdx.math.MathUtils
 import com.badlogic.gdx.math.Vector2
 import com.erikcupal.theblackcatclient.*
-import com.erikcupal.theblackcatclient.gameObjects.CardObject
 import com.erikcupal.theblackcatclient.helpers.minus
-import com.erikcupal.theblackcatclient.helpers.playerRotation
+import com.erikcupal.theblackcatclient.helpers.getPlayerRotation
 import com.erikcupal.theblackcatclient.helpers.plus
 import com.erikcupal.theblackcatclient.types.CardTransformation
 import com.erikcupal.theblackcatclient.types.CardValueChange
 import com.erikcupal.theblackcatclient.types.PlayerSide
 
+/**
+ * HandOver object that implements [[ICardsObject]]
+ */
 class HandOverObject(val side: PlayerSide) : ICardsObject {
 
   override var cards = mutableListOf<CardObject>()
@@ -22,8 +24,8 @@ class HandOverObject(val side: PlayerSide) : ICardsObject {
   val relativeOffset = 0.4f
   val cardWidth = scale * CARD_WIDTH
   val offsetLength = cardWidth * relativeOffset
-  val rotation = 10f + playerRotation(side)
-  val cardRotation = 5f + playerRotation(side)
+  val rotation = 10f + getPlayerRotation(side)
+  val cardRotation = 5f + getPlayerRotation(side)
 
   fun cardPosition(index: Int) =
     Vector2(

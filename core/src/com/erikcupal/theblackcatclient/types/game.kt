@@ -2,6 +2,9 @@ package com.erikcupal.theblackcatclient.types
 
 import com.badlogic.gdx.math.Vector2
 
+/**
+ * Shared game state
+ */
 data class State(
   var name: Name? = null,
   var room: Name? = null,
@@ -29,7 +32,7 @@ data class Card(
   override val rank: Rank
 ) : ICard
 
-val theBlackCat = Card(Suit.Spades, Rank.Queen)
+val theBlackCatCard = Card(Suit.Spades, Rank.Queen)
 
 enum class Suit { Clubs, Diamonds, Spades, Hearts }
 enum class Rank { Seven, Eight, Nine, Ten, Jack, Queen, King, Ace }
@@ -46,8 +49,15 @@ enum class PlayerSide { LEFT, RIGHT, BOTTOM, TOP }
 
 enum class AllowedCardSelection { HandOver, Grill }
 
+/**
+ * Tells whether card changed it's suit and rank
+ */
 data class CardValueChange(override val suit: Suit?, override val rank: Rank?) : ICard
 
+/**
+ * Is used for passing info about that how
+ * card should be transformed
+ */
 data class CardTransformation(
   val position: Vector2,
   val scale: Vector2,

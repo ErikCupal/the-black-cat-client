@@ -13,6 +13,9 @@ import com.erikcupal.theblackcatclient.helpers.scrollToBottom
 import com.erikcupal.theblackcatclient.types.*
 import rx.lang.kotlin.plusAssign
 
+/**
+ * Table with player scores
+ */
 class ScoresGroup(game: GameCore) : GroupBase(game) {
 
   val scoresLabel = Label("Scores", style.mediumLabel)

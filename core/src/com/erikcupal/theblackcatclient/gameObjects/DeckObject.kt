@@ -7,6 +7,9 @@ import com.erikcupal.theblackcatclient.helpers.minus
 import com.erikcupal.theblackcatclient.types.CardTransformation
 import com.erikcupal.theblackcatclient.types.CardValueChange
 
+/**
+ * Deck object that implements [[ICardsObject]]
+ */
 class DeckObject: ICardsObject {
 
   override var cards = mutableListOf<CardObject>()

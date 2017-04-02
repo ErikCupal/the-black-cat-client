@@ -9,6 +9,9 @@ import com.erikcupal.theblackcatclient.helpers.*
 import com.erikcupal.theblackcatclient.types.*
 import rx.lang.kotlin.plusAssign
 
+/**
+ * Connection message label used in [[ConnectStage]]
+ */
 class ConnectionStatusMessageLabel(game: GameCore) : GroupBase(game) {
 
   val infoLabel = Label("", style.errorLabel)

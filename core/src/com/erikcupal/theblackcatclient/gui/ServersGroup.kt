@@ -13,6 +13,12 @@ import com.erikcupal.theblackcatclient.types.*
 import ktx.scene2d.table
 import rx.lang.kotlin.plusAssign
 
+/**
+ * Table with nick and server inputs
+ *
+ * Allows connecting to server and quitting
+ * the game.
+ */
 class ServersGroup(game: GameCore) : GroupBase(game) {
 
   val nameLabel = Label("Nick", style.smallLabel)

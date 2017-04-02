@@ -2,13 +2,15 @@ package com.erikcupal.theblackcatclient.gameObjects
 
 import com.badlogic.gdx.math.Vector2
 import com.erikcupal.theblackcatclient.*
-import com.erikcupal.theblackcatclient.gameObjects.CardObject
-import com.erikcupal.theblackcatclient.helpers.playerRotation
+import com.erikcupal.theblackcatclient.helpers.getPlayerRotation
 import com.erikcupal.theblackcatclient.helpers.plus
 import com.erikcupal.theblackcatclient.types.CardTransformation
 import com.erikcupal.theblackcatclient.types.CardValueChange
 import com.erikcupal.theblackcatclient.types.PlayerSide
 
+/**
+ * Table object that implements [[ICardsObject]]
+ */
 class TableObject : ICardsObject {
 
   override var cards = mutableListOf<CardObject>()
@@ -18,7 +20,7 @@ class TableObject : ICardsObject {
   val cardWidth = scale * CARD_WIDTH
   val cardHeight = scale * CARD_HEIGHT
 
-  fun getCardRotation(side: PlayerSide) = -3f + playerRotation(side)
+  fun getCardRotation(side: PlayerSide) = -3f + getPlayerRotation(side)
 
   fun getCardPosition(side: PlayerSide) = CENTER + Vector2(
     when (side) {

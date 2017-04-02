@@ -11,6 +11,11 @@ import com.erikcupal.theblackcatclient.helpers.scrollToBottom
 import com.erikcupal.theblackcatclient.helpers.show
 import com.erikcupal.theblackcatclient.types.*
 
+/**
+ * Table with chat feed and send button
+ *
+ * Used in [[ScoresAndChatGroup]]
+ */
 class ChatGroup(game: GameCore) : GroupBase(game) {
 
   val label = Label("Chat", style.mediumLabel)

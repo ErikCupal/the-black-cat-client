@@ -11,6 +11,10 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener
 import com.badlogic.gdx.utils.Align
 import com.erikcupal.theblackcatclient.CENTER
 
+/**
+ * Scene2D helpers
+ */
+
 infix fun Actor.onTap(callback: (Actor) -> Unit) {
   val self = this
   this.addListener(object : ActorGestureListener() {
@@ -45,93 +49,22 @@ infix fun Actor.onMouseExit(callback: (Actor) -> Unit) {
   })
 }
 
-operator fun Stage.plusAssign(actor: Actor) {
-  addActor(actor)
-}
-
+/**
+ * Adds an action to the actor
+ */
 infix fun Actor.addAction(action: Action?) {
   if (action != null) {
     addAction(action)
   }
 }
 
-operator fun Actor.minusAssign(listener: EventListener) {
-  removeListener(listener)
-}
-
+/**
+ * Removes an action from the actor
+ */
 infix fun Actor.removeAction(action: Action?) {
   if (action != null) {
     removeAction(action)
   }
-}
-
-fun Actor.center() = setPosition(CENTER.x, CENTER.y, Align.center)
-
-fun scaleToAction(scale: Float, duration: Float, interpolation: Interpolation): ScaleToAction {
-  val action = ScaleToAction()
-  action.setScale(scale)
-  action.duration = duration
-  action.interpolation = interpolation
-  return action
-}
-
-fun scaleToAction(scaleX: Float, scaleY: Float, duration: Float, interpolation: Interpolation): ScaleToAction {
-  val action = ScaleToAction()
-  action.setScale(scaleX, scaleY)
-  action.duration = duration
-  action.interpolation = interpolation
-  return action
-}
-
-fun moveToAction(x: Float, y: Float, duration: Float, interpolation: Interpolation): MoveToAction {
-  val action = MoveToAction()
-  action.setPosition(x, y)
-  action.duration = duration
-  action.interpolation = interpolation
-  return action
-}
-
-fun rotateToAction(rotation: Float, duration: Float, interpolation: Interpolation): RotateToAction {
-  val action = RotateToAction()
-  action.rotation = rotation
-  action.duration = duration
-  action.interpolation = interpolation
-  return action
-}
-
-inline fun optimizedDoAction(crossinline callback: () -> Unit): Action = object : Action() {
-  override fun act(delta: Float): Boolean {
-    callback()
-    return true
-  }
-}
-
-fun doAction(callback: () -> Unit): Action = object : Action() {
-  override fun act(delta: Float): Boolean {
-    callback()
-    return true
-  }
-}
-
-operator fun Group.plusAssign(actor: Actor) {
-  addActor(actor)
-}
-
-operator fun Group.minusAssign(actor: Actor) {
-  removeActor(actor)
-}
-
-/**
- * Necessary to fix bug in Scene2D
- */
-fun ScrollPane.fixedLayout() {
-  layout()
-  layout()
-}
-
-fun ScrollPane.scrollToBottom() {
-  fixedLayout()
-  scrollPercentY = 100f
 }
 
 fun Actor.show(time: Float = 0.5f, interpolation: Interpolation = fade) {
@@ -146,12 +79,67 @@ fun Actor.hide(time: Float = 0.5f, interpolation: Interpolation = fade) {
   )
 }
 
-val fade: Interpolation = fade
+fun Actor.center() = setPosition(CENTER.x, CENTER.y, Align.center)
+
+fun doAction(callback: () -> Unit): Action = object : Action() {
+  override fun act(delta: Float): Boolean {
+    callback()
+    return true
+  }
+}
+
+/**
+ * Adds an actor to the group
+ */
+operator fun Group.plusAssign(actor: Actor) {
+  addActor(actor)
+}
+
+/**
+ * Removes an actor from the group
+ */
+operator fun Group.minusAssign(actor: Actor) {
+  removeActor(actor)
+}
+
+/**
+ * Adds an actor to the stage
+ */
+operator fun Stage.plusAssign(actor: Actor) {
+  addActor(actor)
+}
+
+/**
+ * fixedLayout
+ *
+ * Layouts [[ScrollPane]] correctly.
+ */
+fun ScrollPane.fixedLayout() {
+  layout()
+  layout()
+}
+
+fun ScrollPane.scrollToBottom() {
+  fixedLayout()
+  scrollPercentY = 100f
+}
+
+// Actions
 
 fun delay(time: Float, action: Action): DelayAction = Actions.delay(time, action)
 fun delay(time: Float): DelayAction = Actions.delay(time)
 fun sequence(vararg actions: Action): SequenceAction = Actions.sequence(*actions)
 fun parallel(vararg actions: Action): ParallelAction = Actions.parallel(*actions)
-fun forever(action: Action): RepeatAction = Actions.forever(action)
 fun fadeIn(time: Float = 1f, interpolation: Interpolation = fade): AlphaAction = Actions.fadeIn(time, interpolation)
 fun fadeOut(time: Float = 1f, interpolation: Interpolation = fade): AlphaAction = Actions.fadeOut(time, interpolation)
+fun scaleTo(x: Float, y: Float, duration: Float, interpolation: Interpolation = fade): ScaleToAction {
+  return Actions.scaleTo(x, y, duration, interpolation)
+}
+fun moveTo(x: Float, y: Float, duration: Float, interpolation: Interpolation = fade): MoveToAction {
+  return Actions.moveTo(x, y, duration, interpolation)
+}
+fun rotateTo(rotation: Float, duration: Float, interpolation: Interpolation = fade): RotateToAction {
+  return Actions.rotateTo(rotation, duration, interpolation)
+}
+
+val fade: Interpolation = fade

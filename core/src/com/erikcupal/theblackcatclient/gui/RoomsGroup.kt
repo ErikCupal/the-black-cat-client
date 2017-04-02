@@ -17,6 +17,11 @@ import ktx.actors.alpha
 import ktx.scene2d.table
 import rx.lang.kotlin.plusAssign
 
+/**
+ * Table with new room input and existing rooms buttons
+ *
+ * Allows creating or joining room and leaving the server.
+ */
 class RoomsGroup(game: GameCore) : GroupBase(game) {
 
   val newRoomLabel = Label("New room", style.smallLabel)

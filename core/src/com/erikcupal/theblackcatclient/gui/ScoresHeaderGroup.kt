@@ -9,6 +9,9 @@ import com.erikcupal.theblackcatclient.types.PLAYER_JOINED
 import com.erikcupal.theblackcatclient.types.PLAYER_REPLACED_WITH_BOT
 import rx.lang.kotlin.plusAssign
 
+/**
+ * Table header for [[ScoresGroup]]
+ */
 class ScoresHeaderGroup(game: GameCore) : GroupBase(game) {
 
   val header = Table()

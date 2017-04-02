@@ -3,6 +3,11 @@ package com.erikcupal.theblackcatclient.core
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.InputAdapter
 
+/**
+ * KeyboardShortcutsListener
+ *
+ * Changes to fullscreen mode when F11 pressed.
+ */
 class KeyboardShortcutsListener : InputAdapter() {
   val F11 = 254
 

@@ -7,6 +7,9 @@ import com.erikcupal.theblackcatclient.types.CardTransformation
 import com.erikcupal.theblackcatclient.types.CardValueChange
 import com.erikcupal.theblackcatclient.types.PlayerSide
 
+/**
+ * Grill object that implements [[ICardsObject]]
+ */
 class GrillObject(side: PlayerSide): HandObject(side) {
 
   override val scale = CARD_INITIAL_SCALE * 0.85f

@@ -18,6 +18,9 @@ import com.erikcupal.theblackcatclient.types.ROOM_LEFT
 import rx.lang.kotlin.plusAssign
 import kotlin.coroutines.experimental.EmptyCoroutineContext.plus
 
+/**
+ * Stage with [[PlayGroup]] and [[ScoresAndChatGroup]]
+ */
 class GameStage(game: GameCore) : StageBase(game) {
 
   private val background = Image(assets.getDrawable("game_background"))

@@ -9,7 +9,10 @@ import com.erikcupal.theblackcatclient.helpers.fadeOut
 import rx.subscriptions.CompositeSubscription
 
 /**
- * Parent class for stage classes
+ * Parent class for Scene2D stage classes
+ *
+ * Provides easier access to certain game properties
+ * and auto-disposable RxKotlin subscription.
  */
 open class StageBase(game: GameCore): Stage(FitViewport(WIDTH, HEIGHT), game.batch) {
 

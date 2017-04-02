@@ -1,19 +1,17 @@
 package com.erikcupal.theblackcatclient.gui
 
-import com.badlogic.gdx.scenes.scene2d.actions.Actions
 import com.badlogic.gdx.scenes.scene2d.ui.Label
 import com.badlogic.gdx.utils.Align
-import com.erikcupal.theblackcatclient.*
-import com.erikcupal.theblackcatclient.gui.GroupBase
-import com.erikcupal.theblackcatclient.helpers.*
 import com.erikcupal.theblackcatclient.core.GameCore
-import com.erikcupal.theblackcatclient.types.DEAL_DECK
+import com.erikcupal.theblackcatclient.helpers.*
 import com.erikcupal.theblackcatclient.types.GAME_STARTED
 import com.erikcupal.theblackcatclient.types.NEXT_ROUND
 import com.erikcupal.theblackcatclient.types.NEXT_TURN
 import rx.lang.kotlin.plusAssign
-import kotlin.coroutines.experimental.EmptyCoroutineContext.plus
 
+/**
+ * Label used for displaying gameplay messages in [[GameStage]]
+ */
 class GameMessageLabel(game: GameCore) : GroupBase(game) {
 
   val label = Label("", style.largeLabel)
