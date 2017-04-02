@@ -94,3 +94,8 @@ task texturePacker << {
     
     logger.info "Textures packed"
 }
+
+task copyDocCSS(type: Copy) {
+    from('./doc-css/')
+    into('./doc/')
+}
