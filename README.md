@@ -19,7 +19,7 @@ The Black Cat is an online multiplayer card game. It consists of two parts: Node
 
 ## How to play? 🤔
 
-Read the [rules](https://github.com/ErikCupal/the-black-cat-client/wiki/Game-rules)
+Read the [game rules](https://github.com/ErikCupal/the-black-cat-client/wiki/Game-rules)
 
 ## Credits
 
