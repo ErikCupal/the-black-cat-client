@@ -304,3 +304,7 @@ footer {
         color:#444;
     }
 }
+
+table tbody td p {
+    border-top: 2px solid rgb(211, 211, 211);
+}
