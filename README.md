@@ -4,11 +4,13 @@
 
 The Black Cat is an online multiplayer card game. It consists of two parts: Node.js [server](https://github.com/ErikCupal/the-black-cat-server) and [client](https://github.com/ErikCupal/the-black-cat-client) app written in Kotlin and based on LibGDX game framework.
 
+### [Website](https://theblackcat.club)
+
 ### [Server repo](https://github.com/ErikCupal/the-black-cat-server)
 
 ## Download
 
-[Latest release](https://github.com/ErikCupal/the-black-cat-client/releases) - crossplatform JAR
+[Latest release](https://github.com/ErikCupal/the-black-cat-client/releases) - crossplatform JAR (The game needs instaled Java version 6 and up)
 
 ## Official active servers (🔥 still under development 🔥)
 
@@ -39,6 +41,17 @@ In the game is used **Merriweather** font created by **[Sorkin Type](http://sork
 * [Socket.IO](https://github.com/socketio/socket.io)
 * [jackson-module-kotlin](https://github.com/FasterXML/jackson-module-kotlin)
 * [RxKotlin](https://github.com/ReactiveX/RxKotlin)
+* [KTX](https://github.com/czyzby/ktx)
+
+## How to experiment
+
+Clone the repo
+
+To launch the game run command `./gradlew desktop:run`
+
+To pack new game textures run command `./gradlew texturePacker`
+
+To generate code documentation run command `./gradlew dokka && ./gradlew copyDocCSS`
 
 ## License
 
