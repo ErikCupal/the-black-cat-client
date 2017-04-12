@@ -53,6 +53,12 @@ To pack new game textures run command `./gradlew texturePacker`
 
 To generate code documentation run command `./gradlew dokka && ./gradlew copyDocCSS`
 
+## Future (possible features)
+
+* Add application wrappers for specific platforms (`.exe` for Windows, `App` for macOS)
+* Extend rules (10 more points for last taken trick etc.)
+* Add support for Android tablets
+
 ## License
 
 MIT
