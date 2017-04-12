@@ -53,6 +53,15 @@ To pack new game textures run command `./gradlew texturePacker`
 
 To generate code documentation run command `./gradlew dokka && ./gradlew copyDocCSS`
 
+### About structure (important files/folders/modules)
+
+* **desktop** - desktop launcher for the game
+* **core** - the game itself
+  * **core/GameCore** - the main game class
+  * **gui** - GUI elements
+  * **gameObjects** - cards and card containers
+* **core/assets** - textures and fonts
+
 ## Future (possible features)
 
 * Add application wrappers for specific platforms (`.exe` for Windows, `App` for macOS)
