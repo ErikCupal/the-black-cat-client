@@ -14,6 +14,8 @@ object DesktopLauncher {
   @JvmStatic
   fun main(arg: Array<String>) {
 
+    // packTextures()
+
     val config = LwjglApplicationConfiguration()
     val displayMode = LwjglApplicationConfiguration.getDesktopDisplayMode()
 
