@@ -13,7 +13,7 @@ import rx.lang.kotlin.plusAssign
  */
 class CardsContainer(game: GameCore) : GroupBase(game) {
 
-  val cards = List(32) { CardObject(game) }
+  val cards = List(52) { CardObject(game) }
 
   // Card containers
 

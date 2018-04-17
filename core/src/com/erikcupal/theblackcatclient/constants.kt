@@ -20,7 +20,7 @@ val GAME_SIZE = Vector2(WIDTH, HEIGHT)
 val BOTTOM_TABLE_OFFSET = Vector2(0f, 30f)
 val CARD_WIDTH = 499f
 val CARD_HEIGHT = 696f
-val CARD_INITIAL_SCALE = 0.18f
+val CARD_INITIAL_SCALE = 0.15f
 
 object COLORS {
   val WHITE = rgba(255, 255, 255, 1f)
