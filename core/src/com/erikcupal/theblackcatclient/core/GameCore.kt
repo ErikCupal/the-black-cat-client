@@ -90,6 +90,10 @@ class GameCore : ApplicationAdapter() {
     assets.dispose()
   }
 
+  @Synchronized fun outputWriteUtf(message: String) {
+    outStream?.writeUTF(message)
+  }
+
   private fun configureMessageHandlers() {
     messages.subscribe { message ->
       log("🏓 DISPATCHING MESSAGE", "$message")
@@ -150,7 +154,7 @@ class GameCore : ApplicationAdapter() {
         launch(CommonPool) {
           try {
             while(true) {
-              outStream?.writeUTF("HEARTBEAT")
+              outputWriteUtf("HEARTBEAT")
               Thread.sleep(1000)
             }
           } catch (e: Exception) {
@@ -181,6 +185,10 @@ class GameCore : ApplicationAdapter() {
             log("🕊️ socket connection lost")
             log(e.toString())
 
+            socket?.close()
+            outStream?.close()
+            inStream.close()
+
             socket = null
             outStream = null
 
@@ -191,6 +199,19 @@ class GameCore : ApplicationAdapter() {
     } catch (e: Exception) {
       log("🕊️🕊️🕊️ SOCKET FAILED TO CONNECT - INVALID SERVER ADDRESS 🕊️🕊️🕊️")
       dispatch..CONNECT_FAILED()
+
+      try {
+        socket?.close()
+      } catch (e: Exception) {
+        log("🕊️ could not close socket, probably already closed")
+      }
+
+      try {
+        outStream?.close()
+      } catch (e: Exception) {
+        log("🕊️ could not close output stream, probably already closed")
+      }
+
       socket = null
       outStream = null
     }
@@ -204,7 +225,7 @@ class GameCore : ApplicationAdapter() {
           messageObject.put("actionType", payload::class.simpleName)
           messageObject.put("payload", JSONObject(jsonMapper.writeValueAsString(payload)))
           val message = messageObject.toString()
-          outStream?.writeUTF(message)
+          outputWriteUtf(message)
           log("🦄 SOCKET_MESSAGE_SEND", payload.toString())
           log("🦄 SOCKET_MESSAGE_SEND (literal string)", message)
         }
