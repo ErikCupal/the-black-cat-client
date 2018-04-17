@@ -35,7 +35,7 @@ data class Card(
 val theBlackCatCard = Card(Suit.Spades, Rank.Queen)
 
 enum class Suit { Clubs, Diamonds, Spades, Hearts }
-enum class Rank { Seven, Eight, Nine, Ten, Jack, Queen, King, Ace }
+enum class Rank { Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen, King, Ace }
 
 typealias Name = String
 typealias Id = String
