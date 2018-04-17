@@ -53,7 +53,7 @@ class GameCore : ApplicationAdapter() {
   val send = Send { payload -> sendMessageToServer(payload) }
 
   private var socket: Socket? = null
-  private var outStream: DataOutputStream? = null
+  private var outStream: ObjectOutputStream? = null
 
   lateinit var batch: SpriteBatch
 
@@ -141,8 +141,9 @@ class GameCore : ApplicationAdapter() {
       socket = Socket(ip, port)
 
       if (socket != null) {
-        val inStream = DataInputStream(socket!!.getInputStream())
-        outStream = DataOutputStream(socket!!.getOutputStream())
+        outStream = ObjectOutputStream(socket!!.getOutputStream())
+        outStream?.flush()
+        val inStream = ObjectInputStream(socket!!.getInputStream())
 
         log("🕊️ socket CONNECTED")
         dispatch..CONNECTED()
@@ -150,7 +151,9 @@ class GameCore : ApplicationAdapter() {
         launch(CommonPool) {
           try {
             while(true) {
-              outStream?.writeUTF("HEARTBEAT")
+              outStream?.writeObject("HEARTBEAT")
+              outStream?.flush()
+              // TODO: use scheduler
               Thread.sleep(1000)
             }
           } catch (e: Exception) {
@@ -159,9 +162,9 @@ class GameCore : ApplicationAdapter() {
         }
 
         launch(CommonPool) {
-          try {
+         try {
             while(socket?.isConnected == true) {
-                val message = inStream.readUTF()
+                val message = inStream.readObject() as String
                 log("Message read:", message)
 
                 if (message == "DISCONNECT") {
@@ -177,15 +180,41 @@ class GameCore : ApplicationAdapter() {
                   }
                 }
             }
-          } catch (e: Exception) {
-            log("🕊️ socket connection lost")
-            log(e.toString())
+
+            log("🕊️ socket disconnected")
+            socket?.close()
+            outStream?.close()
+            inStream.close()
 
             socket = null
             outStream = null
+         } catch (e: Exception) {
+           log("🕊️ socket connection lost")
+           log(e.toString())
 
-            dispatch..DISCONNECTED()
-          }
+           try {
+             socket?.close()
+           } catch (e: Exception) {
+             log("🕊️ could not close socket, probably already closed")
+           }
+
+           try {
+             outStream?.close()
+           } catch (e: Exception) {
+             log("🕊️ could not close output stream, probably already closed")
+           }
+
+           try {
+             inStream.close()
+           } catch (e: Exception) {
+             log("🕊️ could not close input stream, probably already closed")
+           }
+
+           socket = null
+           outStream = null
+
+           dispatch..DISCONNECTED()
+         }
         }
       }
     } catch (e: Exception) {
@@ -204,7 +233,8 @@ class GameCore : ApplicationAdapter() {
           messageObject.put("actionType", payload::class.simpleName)
           messageObject.put("payload", JSONObject(jsonMapper.writeValueAsString(payload)))
           val message = messageObject.toString()
-          outStream?.writeUTF(message)
+          outStream?.writeObject(message)
+          outStream?.flush()
           log("🦄 SOCKET_MESSAGE_SEND", payload.toString())
           log("🦄 SOCKET_MESSAGE_SEND (literal string)", message)
         }
